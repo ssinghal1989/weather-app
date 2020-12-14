@@ -36,7 +36,7 @@ export default class Search extends Vue {
     )
   }
 
-  @Watch('selectedCity')
+  @Watch('selectedCity', { immediate: true })
   onSelectedCityChange () {
     this.searchText = this.selectedCity
     this.searchedData = []
