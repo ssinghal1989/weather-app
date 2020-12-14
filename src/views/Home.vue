@@ -69,7 +69,6 @@ export default class Home extends Vue {
       }
       this.setWeatherData()
     } catch (err) {
-      console.log('err', err)
       // On error setting delhi as defauly city
       this.coords = {
         lat: 28.67,
@@ -77,12 +76,8 @@ export default class Home extends Vue {
       }
       this.setWeatherData()
       this.selectedCity = 'Delhi, Delhi'
-      if (err.code === 1) {
-        this.locationErrorMessage =
-          'Please allow location permission to view weather of current your location'
-      } else {
-        this.locationErrorMessage = err.message
-      }
+      this.locationErrorMessage =
+          'Please check your location and location permission to view weather of current your location'
     }
   }
 
