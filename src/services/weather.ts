@@ -1,5 +1,5 @@
 import httpService from './httpService'
-const OpenWeatherAPIKey = 'c021858c7a879df843710ccb688a2966'
+const OpenWeatherAPIKey = '5a536589f320bf1dde279d8eb46f6f94'
 const getWeatherInfo = async (coords: any) => {
   return httpService.get(
     `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&cnt=20&exclude=minutely&units=metric&appid=${OpenWeatherAPIKey}`
