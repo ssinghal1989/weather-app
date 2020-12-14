@@ -87,19 +87,16 @@ export default class Home extends Vue {
   }
 
   async setWeatherData () {
-    console.log(this.coords)
     try {
       this.apiErrorMessage = ''
       this.isDataLoading = true
       const weatherInfo = await getWeatherInfo(this.coords)
-      console.log('weatherInfo', weatherInfo)
       this.dailyData = weatherInfo.data.daily
       this.hourlyData = getExtendedHourlyData(weatherInfo.data.hourly)
       this.selectedDate = this.dailyData[0]
       this.isDataLoaded = true
       this.isDataLoading = false
     } catch (err) {
-      console.log('api err', err)
       this.apiErrorMessage = err.message ? err.message : 'Technical error in getting location data, Please try again'
     }
   }
@@ -111,8 +108,8 @@ export default class Home extends Vue {
 
   created () {
     globalEventBus.$on('onCitySelect', (data: any) => {
-      console.log('data', data)
-      this.setWeatherData(data.coord)
+      this.coords = data.coord
+      this.setWeatherData()
       this.selectedCity = `${data.city.name}, ${data.city.state}`
     })
   }
